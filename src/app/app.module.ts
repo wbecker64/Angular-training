@@ -12,11 +12,14 @@ import {MatListModule} from "@angular/material/list";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import { DishdetailComponent } from './dishdetail/dishdetail.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
     declarations: [
         AppComponent,
-        MenuComponent
+        MenuComponent,
+        DishdetailComponent
     ],
     imports: [
         BrowserModule,
@@ -26,7 +29,8 @@ import {MatButtonModule} from "@angular/material/button";
         MatListModule,
         MatGridListModule,
         MatCardModule,
-        MatButtonModule
+        MatButtonModule,
+        MatExpansionModule
     ],
     providers: [],
     bootstrap: [AppComponent]
