@@ -14,6 +14,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {DishService} from "./services/dish.service";
 
 @NgModule({
     declarations: [
@@ -32,7 +33,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
         MatButtonModule,
         MatExpansionModule
     ],
-    providers: [],
+    providers: [DishService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
