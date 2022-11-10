@@ -17,6 +17,10 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {DishService} from "./services/dish.service";
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import {AppRoutingModule} from "./app-routing/app-routing.module";
 
 @NgModule({
     declarations: [
@@ -24,12 +28,16 @@ import { FooterComponent } from './footer/footer.component';
         MenuComponent,
         DishdetailComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        HomeComponent,
+        AboutComponent,
+        ContactComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
+        AppRoutingModule,
         MatToolbarModule,
         MatListModule,
         MatGridListModule,
