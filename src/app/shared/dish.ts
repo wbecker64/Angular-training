@@ -1,3 +1,5 @@
+import {Comment} from "./Comment";
+
 export class Dish {
     // @ts-ignore
     id: string;
@@ -15,4 +17,6 @@ export class Dish {
     price: string;
     // @ts-ignore
     description: string;
+    // @ts-ignore
+    comments: Comment[]
 }
