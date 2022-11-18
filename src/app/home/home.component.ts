@@ -24,14 +24,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.dishservice.getFeaturedDish()
-        .then(dish => this.dish = dish)
-        .catch(err => console.log(err))
+        .subscribe(dish => this.dish = dish)
     this.promotionservice.getFeaturedPromotion()
-        .then(promo => this.promotion = promo)
-        .catch(err => console.log(err))
+        .subscribe(promo => this.promotion = promo)
     this.leaderService.getFeaturedLeader()
-        .then(leader => this.leader = leader)
-        .catch(err => console.log(err))
+        .subscribe(leader => this.leader = leader)
   }
 
 }

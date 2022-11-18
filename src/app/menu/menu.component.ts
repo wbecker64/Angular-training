@@ -22,9 +22,7 @@ export class MenuComponent implements OnInit {
   constructor(private dishService: DishService) { }
 
   ngOnInit(): void {
-    this.dishService.getDishes()
-        .then(dishes => this.dishes = dishes)
-        .catch(err => console.log(err))
+    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes)
   }
 
 }
