@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Dish} from "../shared/dish";
-import {DISHES} from "../shared/dishes";
-import {delay, firstValueFrom, Observable, of} from "rxjs";
+import {delay, firstValueFrom, map, Observable, of} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {baseURL} from "../shared/baseurl";
 
 export const randomDelay = () => Math.random() * 200
 
@@ -10,21 +11,21 @@ export const randomDelay = () => Math.random() * 200
 })
 export class DishService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getDishes(): Observable<Dish[]> {
-    return of(DISHES).pipe(delay(randomDelay()))
+    return this.http.get<Dish[]>(baseURL + 'dishes')
   }
 
   getDish(id: string): Observable<Dish> {
-    return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(randomDelay()))
+    return this.http.get<Dish>(baseURL + 'dishes/' + id)
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(randomDelay()))
+    return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
   }
 
   getDishIds(): Observable<string[]>{
-    return of(DISHES.map(dish => dish.id))
+    return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)))
   }
 }

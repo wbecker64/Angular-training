@@ -13,13 +13,7 @@ export class MenuComponent implements OnInit {
   dishes: Dish[]
 
   // @ts-ignore
-  selectedDish: Dish;
-
-  onSelect(dish: Dish) {
-    this.selectedDish = dish
-  }
-
-  constructor(private dishService: DishService) { }
+  constructor(private dishService: DishService, @Inject('BaseURL') public BaseURL) { }
 
   ngOnInit(): void {
     this.dishService.getDishes().subscribe(dishes => this.dishes = dishes)
