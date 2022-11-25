@@ -17,11 +17,12 @@ export class DishdetailComponent implements OnInit {
     commentForm!: FormGroup
     comment?: Comment
     @ViewChild('cform') commentFormDirective!: NgForm;
-    dish!: Dish;
+    dish!: Dish | null;
     dishIds!: string[]
     prev!: string
     next!: string
     errMsg!: string
+    dishCopy!: Dish | null
 
     formErrors: Record<string, string> = {
         'author': '',
@@ -49,10 +50,10 @@ export class DishdetailComponent implements OnInit {
         this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
             .subscribe(dish => {
                 this.dish = dish;
+                this.dishCopy = dish
                 this.setPrevNext(dish.id);
             }, error => this.errMsg = error);
     }
-
 
     // @ts-ignore
     constructor(private dishService: DishService, private route: ActivatedRoute, private location: Location, private fb: FormBuilder, @Inject('BaseURL') public BaseURL) {
@@ -96,7 +97,15 @@ export class DishdetailComponent implements OnInit {
     }
 
     onSubmit() {
-        this.dish.comments.push({...this.comment!, date: new Date().toISOString()})
+        this.dishCopy!.comments.push({...this.comment!, date: new Date().toISOString()})
+        this.dishService.putDish(this.dishCopy!).subscribe(dish => {
+            this.dish = dish
+            this.dishCopy = dish
+        }, error => {
+            this.dish = null
+            this.dishCopy = null
+            this.errMsg = error
+        })
         this.comment = undefined
         this.commentFormDirective.resetForm({
             author: '',
