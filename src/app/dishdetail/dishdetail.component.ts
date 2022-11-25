@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
     dishIds!: string[]
     prev!: string
     next!: string
+    errMsg!: string
 
     formErrors: Record<string, string> = {
         'author': '',
@@ -49,7 +50,7 @@ export class DishdetailComponent implements OnInit {
             .subscribe(dish => {
                 this.dish = dish;
                 this.setPrevNext(dish.id);
-            });
+            }, error => this.errMsg = error);
     }
 
 
