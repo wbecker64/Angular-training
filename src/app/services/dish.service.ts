@@ -3,7 +3,7 @@ import {Dish} from "../shared/dish";
 import {DISHES} from "../shared/dishes";
 import {delay, firstValueFrom, Observable, of} from "rxjs";
 
-export const randomDelay = () => Math.random() * 2000
+export const randomDelay = () => Math.random() * 200
 
 @Injectable({
   providedIn: 'root'

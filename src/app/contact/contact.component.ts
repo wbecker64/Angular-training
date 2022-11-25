@@ -66,8 +66,7 @@ export class ContactComponent implements OnInit {
 
     onSubmit() {
         this.feedback = this.feedbackForm.value
-        console.log(this.feedback)
-        this.feedbackForm.reset({
+        this.feedbackFormDirective.resetForm({
             firstname: '',
             lastname: '',
             telnum: 0,
@@ -76,7 +75,6 @@ export class ContactComponent implements OnInit {
             contacttype: 'None',
             message: ''
         })
-        this.feedbackFormDirective.resetForm()
     }
 
     private onValueChanged() {
